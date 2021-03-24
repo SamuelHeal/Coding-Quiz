@@ -16,17 +16,30 @@
 
   <Main id="main-flex">
     <div id="main-box">
-      <h1 id="text">Coding Quiz Challenge</h1>
-      <p id="para">Answer the questions as fast as you can to achieve the best possible score. <br>Incorrect answers will be penalised by deducting 15 seconds off your score.</p>
-      <button id="start">Start Quiz</button>
-      <ul id="list-style">
-        <li><button id="answer_boxes">Answer 1</button></li>
-        <li><button id="answer_boxes">Answer 2</button></li>
-        <li><button id="answer_boxes">Answer 3</button></li>
-        <li><button id="answer_boxes">Answer 4</button></li>
-      </ul>
+      <div id="initialText">
+        <h1 id="text">Coding Quiz Challenge</h1>
+        <p id="para">Answer the questions as fast as you can to achieve the best possible score. <br>Incorrect answers will be penalised by deducting 15 seconds off your score.</p>
+      </div>
+      <form id="hidden">
+        <label id="enterInitials">Enter Intials: </label><input type="text">
+        <button id="submit" type="submit">Submit</button>
+      </form>
+      <div class="start">
+        <button id="start">Start Quiz</button>
+      </div>
+      <div id="flex-answers">
+        <button id="one" class="answer_boxes">Answer 1</button>
+        <button id="two" class="answer_boxes">Answer 2</button>
+        <button id="three" class="answer_boxes">Answer 3</button>
+        <button id="four" class="answer_boxes">Answer 4</button>
+      </div>
+      <div id="result_div">
+        <p>________________________________________</p>
+        <h3 id="result">Correct!</h3>
+      </div>
     </div>
         
+  <script src="script.js"></script>
 
   </Main>
   

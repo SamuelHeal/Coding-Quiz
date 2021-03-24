@@ -34,7 +34,6 @@
 #main-box{
     position: relative;
     top: 200px;
-
     text-align: center;
 }
 
@@ -45,15 +44,33 @@
     border-color: black;
     border-radius: 3px;
     font-size: 20px;
+    margin-top: 10px;
+}
+
+.start{
+    margin-top: 10px;
+}
+
+#para{
+    margin-top: 15px
 }
 
 #list-style{
     list-style-type: none;
 }
 
-#answer_boxes{
-    /* display: none */
-    margin: 3px;
+#flex-answers{
+    display: flex;
+    flex-direction: column;
+    
+    
+    
+}
+.answer_boxes{
+    display: none;
+    width: fit-content;
+    margin-top: 10px;
+    margin-bottom: 5px;
     background-color: purple;
     color: white;
     border-color: black;
@@ -66,7 +83,32 @@
     cursor: pointer;
 }
 
-#answer_boxes:hover{
+.answer_boxes:hover{
     background-color: rgb(151, 94, 151);
     cursor: pointer;
+}
+
+#result_div{
+    color: grey;
+    display: none;
+    text-align: left;
+}
+
+
+#hidden{
+    display: none;
+    text-align: left;
+}
+#enterInitials{
+    font-size: 25px;
+}
+
+#submit{
+    background-color: purple;
+    color: white;
+    border-color: black;
+    border-radius: 3px;
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 15px
 }

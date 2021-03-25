@@ -84,6 +84,7 @@ var myQuestions = [
 ]
 
 
+// Start and question functions
 
 start.addEventListener("click", function(){
     timer()
@@ -92,7 +93,6 @@ start.addEventListener("click", function(){
     getAnswer()
        
 })
-
 
 
 function gameStart(){
@@ -108,18 +108,71 @@ function gameStart(){
 var counter = 0
 
 function questionText(){
-    console.log(myQuestions[counter].question)
     heading.innerHTML = myQuestions[counter].question
     buttonOne.innerHTML = myQuestions[counter].answers[0]
     buttonTwo.innerHTML = myQuestions[counter].answers[1]
     buttonThree.innerHTML = myQuestions[counter].answers[2]
     buttonFour.innerHTML = myQuestions[counter].answers[3]
-    
-    
 
 }
 
 var resultTimer = 2
+function resultDiv(){
+    
+    result_div.style.display = "block"
+    
+    var timer = setInterval(function () {
+        if (resultTimer != 0){
+            resultTimer--
+        }
+        else{
+            result_div.style.display = "none"
+            clearInterval(timer);
+            
+            
+        }
+    }, 500);
+
+}
+
+var countdown = 75;
+var finalScore = -1
+function timer(){
+    
+    seconds.innerHTML = countdown
+    var timeInterval = setInterval(function () {
+        
+        if (finalScore != -1){
+            seconds.innerHTML = countdown
+            return;
+        }
+        
+        else if(countdown > 0) {
+            seconds.innerHTML = countdown;
+            countdown--;
+          
+        }
+        
+        else if (countdown === 0){
+            seconds.innerHTML = countdown;
+            clearInterval(timeInterval);
+            timedOut()
+          
+        }
+    
+      }, 1000);
+    
+}
+
+function scoreDecrease(){
+    countdown -= 15
+}
+
+function timedOut(){
+    finalScore = 0
+    displayEnd()
+}
+
 function getAnswer(){
     let buttons = document.querySelectorAll(".answer_boxes")
 
@@ -164,71 +217,20 @@ function getAnswer(){
                 resultDiv()
                 resultTimer = 2
                 result.innerHTML = "Incorrect!"
-                displayEnd()
-                
-                
-            }
-
-
-            
-        }
-        
+                displayEnd()             
+            }        
+        }     
         });
-
-        
-        
     });
-    
-
-
 }
 
+// Game end page
+var highscoreList = document.querySelector("#highscore_list");
+var highscores = [];
+var initials = [];
+var enterInitials = document.querySelector("#submit");
 
-
-
-var countdown = 75;
-var finalScore = -1
-function timer(){
-    
-    seconds.innerHTML = countdown
-    var timeInterval = setInterval(function () {
-        
-        if (finalScore != -1){
-            seconds.innerHTML = countdown
-            return;
-        }
-        
-        else if(countdown > 0) {
-            seconds.innerHTML = countdown;
-            countdown--;
-          
-        }
-        
-    
-        else if (countdown === 0){
-            seconds.innerHTML = countdown;
-            clearInterval(timeInterval);
-            timedOut()
-          
-        }
-    
-    
-    
-      }, 1000);
-    
-    
-
-}
-
-function scoreDecrease(){
-    countdown -= 15
-}
-
-function timedOut(){
-    finalScore = 0
-    displayEnd()
-}
-
+init()
 
 function displayEnd(){
     for (var i = 0; i < answerBoxes.length; i++){
@@ -237,42 +239,10 @@ function displayEnd(){
     heading.style.width = "auto"
     heading.innerHTML = "All Done!"
     initialText.style.textAlign = "left"
-    description.innerHTML = "your final score is "
+    description.innerHTML = "your final score is " + finalScore
     scoreSubmit.style.display = "block"
-
-
 }
 
-
-function resultDiv(){
-    
-    result_div.style.display = "block"
-    
-    var timer = setInterval(function () {
-        if (resultTimer != 0){
-            resultTimer--
-        }
-        else{
-            result_div.style.display = "none"
-            clearInterval(timeInterval);
-            
-            
-        }
-    }, 500);
-
-    
-}
-
-// Index2.html (highscore page):
-
-var highscoreList = document.querySelector("#highscore_list");
-var highscores = [];
-var initials = [];
-var enterInitials = document.querySelector("#submit");
-var mainScreen = document.querySelector("#mainScreen");
-var hsScreen = document.querySelector("#highscorePage")
-
-init()
 
 scoreSubmit.addEventListener("submit", function(event){
     event.preventDefault()
@@ -286,11 +256,9 @@ scoreSubmit.addEventListener("submit", function(event){
 
     highscores.push(finalScore.toString())
     storeInfo()
-    renderInitials()
+    renderScore()
     mainScreen.style.display = "none"
     hsScreen.style.display = "block"
-    
-
 
 })
 
@@ -308,12 +276,10 @@ function init(){
     var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
     if (storedHighscores != null){
         highscores = storedHighscores
-    }
-
-    
+    } 
 }
 
-function renderInitials(){
+function renderScore(){
     highscoreList.innerHTML = ""
     if (initials.length > 0){
         for (var i = 0; i < initials.length; i++) {
@@ -332,12 +298,14 @@ function renderInitials(){
     }
 }
 
-
+// Highscore screen
 
 var goBack = document.querySelector("#goBack")
 var clearScores = document.querySelector("#clearHighscores")
 var stylingMainText = document.querySelector("#initialText")
 var stylingMainStart = document.querySelector(".start")
+var mainScreen = document.querySelector("#mainScreen");
+var hsScreen = document.querySelector("#highscorePage")
 
 goBack.addEventListener("click", function(){
     location.reload();
@@ -347,7 +315,7 @@ clearScores.addEventListener("click", function(){
     highscores = []
     initials = []
     storeInfo()
-    renderInitials()
+    renderScore()
 
 
 })
@@ -358,5 +326,5 @@ var viewHighscores = document.querySelector("#highscores")
 viewHighscores.addEventListener("click", function(){
     mainScreen.style.display = "none";
     hsScreen.style.display = "block";
-    renderInitials()
+    renderScore()
 })

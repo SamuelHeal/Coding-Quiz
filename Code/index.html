@@ -9,51 +9,57 @@
 </head>
 <body>
   <main id="mainScreen">
-    <div id="flex">
+
+    <nav id="flex">
       <a id="highscores">View Highscores</a>
       <p id="time">Time: <span id="seconds_left">0</span></p>
+    </nav>
 
-    </div>
-    <div id="main-flex">
+    <section id="main-flex">
       <div id="main-box">
         <div id="initialText">
           <h1 id="text">Coding Quiz Challenge</h1>
           <p id="para">Answer the questions as fast as you can to achieve the best possible score. <br>Incorrect answers will be penalised by deducting 15 seconds off your score.</p>
         </div>
+
         <form id="hidden" method="POST">
           <label for="submit">Enter Intials: </label>
           <input type="text" name="submit" id="submit">
           <button id="submit_button" type="submit">Submit</button>
         </form>
+
         <div class="start">
           <button id="start">Start Quiz</button>
         </div>
+
         <div id="flex-answers">
           <button id="one" class="answer_boxes">Answer 1</button>
           <button id="two" class="answer_boxes">Answer 2</button>
           <button id="three" class="answer_boxes">Answer 3</button>
           <button id="four" class="answer_boxes">Answer 4</button>
         </div>
+
         <div id="result_div">
           <p>__________________________</p>
           <h3 id="result">Correct!</h3>
         </div>
       </div>
-    </div>
+    </section>
+
   </main>
   
   <section id='highscorePage'>
     <div id=flex-container>
         <div id="heading_hs">
+          
             <h1 id="title">Highscores</h1>
             <ul id="highscore_list"></ul>
+
             <div id="flex_button">
               <button id="goBack" class="hs_button">Go Back</button>
               <button id="clearHighscores" class="hs_button">Clear Highscores</button>
           </div>
-        
       </div>
-
   </section>
         
   <script src="script.js"></script>

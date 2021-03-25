@@ -1,8 +1,15 @@
+:root{
+    --button_colour: rgb(77, 17, 77);
+    --button_fade: rgba(131, 32, 131, 0.534);
+}
+
 *{
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
+
+/* Main screen and question styling */
 
 #mainScreen{
     display: block;
@@ -26,7 +33,7 @@
     top: 20px;
     left: 2%;
     text-decoration: none;
-    color: purple;
+    color: var(--button_colour);
     font-size: 20px;
     
 }
@@ -60,7 +67,7 @@
 
 #start{
     margin: 10px;
-    background-color: purple;
+    background-color: var(--button_colour);
     color: white;
     border-color: black;
     border-radius: 3px;
@@ -91,21 +98,21 @@
     display: none;
     margin-top: 10px;
     margin-bottom: 5px;
-    background-color: purple;
+    background-color: var(--button_colour);
     color: white;
     border-color: black;
     border-radius: 3px;
-    font-size: 25px;
+    font-size: 15px;
     width: 300px
 }
 
 #start:hover{
-    background-color: rgb(151, 94, 151);
+    background-color: var(--button_fade);
     cursor: pointer;
 }
 
 .answer_boxes:hover{
-    background-color: rgb(151, 94, 151);
+    background-color: var(--button_fade);
     cursor: pointer;
 }
 
@@ -127,7 +134,7 @@
 }
 
 #submit_button{
-    background-color: purple;
+    background-color: var(--button_colour);
     color: white;
     border-color: black;
     border-radius: 3px;
@@ -136,7 +143,7 @@
     margin-top: 15px
 }
 
-/* highscore page) */
+/* highscore page */
 
 #flex-container{
     display:flex;
@@ -151,6 +158,10 @@
     
 
 }
+
+#highscore_list{
+    text-align: left;
+}
 #flex_button{
     position: relative;
     top: 30px;
@@ -159,7 +170,7 @@
 }
 
 .hs_button{
-    background-color: purple;
+    background-color: var(--button_colour);
     color: white;
     border-color: black;
     border-radius: 3px;
@@ -168,7 +179,7 @@
 }
 
 .hs_button:hover{
-    background-color: rgb(151, 94, 151);
+    background-color: var(--button_fade);
     cursor: pointer;
 }
 
@@ -179,7 +190,7 @@ li{
     font-size: 25px;
     border-radius: 3px;
     padding: 5px;
-    background-color:  rgba(128, 0, 128, 0.705);
+    background-color:  var(--button_fade);
     color: white;
 }
 

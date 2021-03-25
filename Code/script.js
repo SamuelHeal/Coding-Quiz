@@ -1,91 +1,3 @@
-// var seconds = document.querySelector("#seconds_left");
-// var quizQuestion = document.querySelector("#text");
-// var start = document.querySelector(("#start"))
-// var toDelete = document.querySelector("#para")
-// var answerBoxes = document.querySelectorAll(".answer_boxes")
-// var answers = document.querySelectorAll("#flex_answers")
-
-// var questions = [
-//     {
-//         question: "Another word for hi?",
-//         answers: [
-//             {correctAnswer: "Hello", correct: true},
-//             {other: "Bye", correct: false},
-//             {other: "Ciao", correct: false},
-//             {other: "Lmao", correct: false}
-
-//         ]
-           
-//     },
-//     {
-//         question: "Short for goodbye?",
-//         answers: [
-//             {correctAnswer: "Bye", correct: true},
-//             {other: "Say", correct: false},
-//             {other:  "Toe", correct: false},
-//             {other: "Boat", correct: false}
-
-//         ]
-    
-            
-//     }
-// ];
-
-// console.log(answerBoxes)
-// console.log(questions.length)
-
-// function gameStart(){
-    
-//     start.style.display = "none"
-//     for (var i = 0; i < answerBoxes.length; i++){
-//         answerBoxes[i].style.display = "block"
-//     }
-//     toDelete.innerHTML = " "
-
-    
-// }
-
-
-// function setText(){
-//     var counter = 0
-//     quizQuestion.innerHTML = questions[counter].question
-//     questions[counter].answers.forEach(answer => {
-//         var button = document.createElement("button")
-//         button.innerHTML = answer.text
-//         button.classList.add("answer_boxes")
-//         if (answer.correct){
-//             button.dataset.correct = answer.correct
-//         }
-//         button.addEventListener("click", selectAnswer)
-//         answers.appendChild(button)
-
-        
-
-
-//     })
-
-    
-    
-
-
-
-// }
-
-// start.addEventListener("click", function(){
-//     gameStart()
-//     // timerStart()
-//     // setText()
-       
-// })
-
-// // function selectAnswer(){
-    
-// }
-
-
-
-
-
 
 var seconds = document.querySelector("#seconds_left");
 var heading = document.querySelector("#text");
@@ -104,36 +16,69 @@ var initialText = document.querySelector("#initialText")
 
 var myQuestions = [
     {
-        question: "Favourite Sport",
+        question: "What does HTML stand for?",
         answers: [
-            "Basketball",
-            "Baseball",
-            "Football",
-            "Soccor"
+            "Hyperlinks and Text Markup Language",
+            "Hypertext Markup Language",
+            "Hyper Tuning Merc Land",
+            "His teddy made lemonade"
         ],
-        correctAnswer: "Basketball"
+        correctAnswer: "Hypertext Markup Language"
 
     },
     {
-        question: "Favourite food",
+        question: "What goes inside the <> to link a stylesheet to HTML",
         answers: [
-            "Pasta",
-            "Parmi",
-            "KFC",
-            "Pizza"
+            "link",
+            "div",
+            "body",
+            "style"
         ],
-        correctAnswer: "KFC"
+        correctAnswer: "<link>"
 
     },
     {
-        question: "Favourite drink",
+        question: "When was Javascript created?",
         answers: [
-            "sprite",
-            "lemonade",
-            "milkshake",
-            "smoothie"
+            "2001",
+            "1981",
+            "2010",
+            "1995"
         ],
-        correctAnswer: "sprite"
+        correctAnswer: "1995"
+
+    },
+    {
+        question: "Who developed HTML?",
+        answers: [
+            "Lee Andersons",
+            "Bob Kahn",
+            "Tim Berners-Lee",
+            "Larry Page"
+        ],
+        correctAnswer: "Tim Berners-Lee"
+
+    },
+    {
+        question: "How do you create a window Alert in Javascript?",
+        answers: [
+            "display('Hello')",
+            "window('Hello')",
+            "alert('Hello')",
+            "popUp('Hello')"
+        ],
+        correctAnswer: "alert('Hello')"
+
+    },
+    {
+        question: " Why wont this following function work? <br>function helloWorld{ console.log('hello world')}",
+        answers: [
+            "missing () after helloWorld",
+            "[] instead of {}",
+            "should be log.console",
+            "function before helloWorld"
+        ],
+        correctAnswer: "missing () after helloWorld"
 
     }
 ]
@@ -141,19 +86,16 @@ var myQuestions = [
 
 
 start.addEventListener("click", function(){
+    timer()
     gameStart()
     questionText()
     getAnswer()
-    
-    // timerStart()
-    // setText()
        
 })
 
 
 
 function gameStart(){
-    
     start.style.display = "none"
     heading.innerHTML = ''
     for (var i = 0; i < answerBoxes.length; i++){
@@ -179,7 +121,6 @@ function questionText(){
 
 
 function getAnswer(){
-    console.log(myQuestions[counter].question)
     let buttons = document.querySelectorAll(".answer_boxes")
 
     buttons.forEach(function(btn) {
@@ -195,6 +136,7 @@ function getAnswer(){
             }
             else {
                 counter++
+                scoreDecrease()
                 questionText()
                 result_div.style.display = "block"
                 result.innerHTML = "Incorrect!"
@@ -203,16 +145,24 @@ function getAnswer(){
         }
         else {
             if (selected === myQuestions[counter].correctAnswer){
+                counter++
+                finalScore = countdown
                 result_div.style.display = "block"
-                result.innerHTML = "Correct!"
+                result.innerHTML = "Correct!"   
                 displayEnd()
+                
 
 
             }
             else {
+                scoreDecrease()
+                finalScore = countdown
+                counter++
                 result_div.style.display = "block"
                 result.innerHTML = "Incorrect!"
                 displayEnd()
+                
+                
             }
 
 
@@ -229,6 +179,53 @@ function getAnswer(){
 
 }
 
+
+
+
+var countdown = 75;
+var finalScore = -1
+function timer(){
+    
+    seconds.innerHTML = countdown
+    var timeInterval = setInterval(function () {
+        
+        if (finalScore != -1){
+            seconds.innerHTML = countdown
+            return;
+        }
+        
+        else if(countdown > 0) {
+            seconds.innerHTML = countdown;
+            countdown--;
+          
+        }
+        
+    
+        else if (countdown === 0){
+            seconds.innerHTML = countdown;
+            clearInterval(timeInterval);
+            timedOut()
+          
+        }
+    
+    
+    
+      }, 1000);
+    
+    
+
+}
+
+function scoreDecrease(){
+    countdown -= 15
+}
+
+function timedOut(){
+    finalScore = 0
+    displayEnd()
+}
+
+
 function displayEnd(){
     for (var i = 0; i < answerBoxes.length; i++){
         answerBoxes[i].style.display = "none"
@@ -237,6 +234,106 @@ function displayEnd(){
     initialText.style.textAlign = "left"
     description.innerHTML = "your final score is "
     scoreSubmit.style.display = "block"
+
+
 }
 
 
+
+// Index2.html (highscore page):
+
+var highscoreList = document.querySelector("#highscore_list");
+var highscores = [];
+var initials = [];
+var enterInitials = document.querySelector("#submit");
+var mainScreen = document.querySelector("#mainScreen");
+var hsScreen = document.querySelector("#highscorePage")
+
+init()
+
+scoreSubmit.addEventListener("submit", function(event){
+    event.preventDefault()
+    var textEntered = enterInitials.value.trim()
+    if (textEntered === "") {
+        return;
+    }
+    
+    initials.push(textEntered)
+    enterInitials.value = ""
+
+    highscores.push(finalScore.toString())
+    storeInfo()
+    renderInitials()
+    mainScreen.style.display = "none"
+    hsScreen.style.display = "block"
+    
+
+
+})
+
+function storeInfo(){
+    localStorage.setItem("initials", JSON.stringify(initials));
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+
+function init(){
+    var storedInitials = JSON.parse(localStorage.getItem("initials"));
+    if (storedInitials != null){
+        initials = storedInitials
+    }
+
+    var storedHighscores = JSON.parse(localStorage.getItem("highscores"));
+    if (storedHighscores != null){
+        highscores = storedHighscores
+    }
+
+    
+}
+
+function renderInitials(){
+    highscoreList.innerHTML = ""
+    if (initials.length > 0){
+        for (var i = 0; i < initials.length; i++) {
+            var initialsText = initials[i];
+            var highscoreText = highscores[i]
+            var number = i+1
+            
+            var li = document.createElement("li");
+            li.textContent = number +". " + initialsText + " - " + highscoreText;
+
+            highscoreList.appendChild(li)
+        }
+    }
+    else{
+        return;
+    }
+}
+
+
+
+var goBack = document.querySelector("#goBack")
+var clearScores = document.querySelector("#clearHighscores")
+var stylingMainText = document.querySelector("#initialText")
+var stylingMainStart = document.querySelector(".start")
+
+goBack.addEventListener("click", function(){
+    location.reload();
+})
+
+clearScores.addEventListener("click", function(){
+    highscores = []
+    initials = []
+    storeInfo()
+    renderInitials()
+
+
+})
+
+var viewHighscores = document.querySelector("#highscores")
+
+
+viewHighscores.addEventListener("click", function(){
+    mainScreen.style.display = "none";
+    hsScreen.style.display = "block";
+    renderInitials()
+})

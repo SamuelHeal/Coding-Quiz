@@ -4,6 +4,9 @@
     margin: 0px;
 }
 
+#mainScreen{
+    display: block;
+}
 #flex{
     display: flex;
     margin: 10px;
@@ -24,6 +27,10 @@
     color: purple;
     font-size: 20px;
     
+}
+
+#highscores:hover{
+    cursor: pointer;
 }
 
 #main-flex{
@@ -62,20 +69,21 @@
 #flex-answers{
     display: flex;
     flex-direction: column;
+    left: 300px
     
     
     
 }
 .answer_boxes{
     display: none;
-    width: fit-content;
     margin-top: 10px;
     margin-bottom: 5px;
     background-color: purple;
     color: white;
     border-color: black;
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 25px;
+    width: 300px
 }
 
 #start:hover{
@@ -103,7 +111,7 @@
     font-size: 25px;
 }
 
-#submit{
+#submit_button{
     background-color: purple;
     color: white;
     border-color: black;
@@ -112,3 +120,55 @@
     margin-left: 10px;
     margin-top: 15px
 }
+
+/* highscore page) */
+
+#flex-container{
+    display:flex;
+    margin: 10px;
+    justify-content: center;
+}
+
+#heading_hs{
+    position: relative;
+    top: 200px;
+    text-align: center;
+    
+
+}
+#flex_button{
+    position: relative;
+    top: 30px;
+    text-align: center;
+    
+}
+
+.hs_button{
+    background-color: purple;
+    color: white;
+    border-color: black;
+    border-radius: 3px;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.hs_button:hover{
+    background-color: rgb(151, 94, 151);
+    cursor: pointer;
+}
+
+li{
+    height: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 25px;
+    border-radius: 3px;
+    padding: 5px;
+    background-color:  rgba(128, 0, 128, 0.486);
+    color: white;
+}
+
+#highscorePage{
+    display: none
+}
+

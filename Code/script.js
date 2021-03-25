@@ -34,7 +34,7 @@ var myQuestions = [
             "body",
             "style"
         ],
-        correctAnswer: "<link>"
+        correctAnswer: "link"
 
     },
     {
@@ -119,7 +119,7 @@ function questionText(){
 
 }
 
-
+var resultTimer = 2
 function getAnswer(){
     let buttons = document.querySelectorAll(".answer_boxes")
 
@@ -131,14 +131,16 @@ function getAnswer(){
             if (selected === myQuestions[counter].correctAnswer){
                 counter++
                 questionText()
-                result_div.style.display = "block"
+                resultDiv()
+                resultTimer = 2
                 result.innerHTML = "Correct!"
             }
             else {
                 counter++
                 scoreDecrease()
                 questionText()
-                result_div.style.display = "block"
+                resultDiv()
+                resultTimer = 2
                 result.innerHTML = "Incorrect!"
             }
         
@@ -147,7 +149,8 @@ function getAnswer(){
             if (selected === myQuestions[counter].correctAnswer){
                 counter++
                 finalScore = countdown
-                result_div.style.display = "block"
+                resultDiv()
+                resultTimer = 2
                 result.innerHTML = "Correct!"   
                 displayEnd()
                 
@@ -158,7 +161,8 @@ function getAnswer(){
                 scoreDecrease()
                 finalScore = countdown
                 counter++
-                result_div.style.display = "block"
+                resultDiv()
+                resultTimer = 2
                 result.innerHTML = "Incorrect!"
                 displayEnd()
                 
@@ -230,6 +234,7 @@ function displayEnd(){
     for (var i = 0; i < answerBoxes.length; i++){
         answerBoxes[i].style.display = "none"
     }
+    heading.style.width = "auto"
     heading.innerHTML = "All Done!"
     initialText.style.textAlign = "left"
     description.innerHTML = "your final score is "
@@ -239,6 +244,24 @@ function displayEnd(){
 }
 
 
+function resultDiv(){
+    
+    result_div.style.display = "block"
+    
+    var timer = setInterval(function () {
+        if (resultTimer != 0){
+            resultTimer--
+        }
+        else{
+            result_div.style.display = "none"
+            clearInterval(timeInterval);
+            
+            
+        }
+    }, 500);
+
+    
+}
 
 // Index2.html (highscore page):
 
